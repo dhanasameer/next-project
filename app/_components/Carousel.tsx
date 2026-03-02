@@ -1,28 +1,28 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import image1 from "../../public/images/afe3f1215642c2c31b3d7ff1b207be04.jpg";
-import image2 from "../../public/images/perfume-photography.jpg";
-import image3 from "../../public/images/Perfume-Bottles-35-930x700.webp";
+import image1 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
+import image2 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
+import image3 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
 import NextArrow from "@/svg/NextArrow";
 const images = [
   {
     image: image1,
     title: "30% DISCOUNT",
     subTitle: "SUMMER 2026",
-    desc: "GET YOURS NOW",
+    desc: "OFFER ENDS SOON",
   },
   {
     image: image2,
-    title: "OFFER ENDS SOON",
-    subTitle: "BLACK FRIDAY SALE",
-    desc: "UPTO 15% OFF ON ALL PRODUCTS",
+    subTitle: "NEW LINEN COLLECTION",
+    desc: "GET YOURS NOW",
   },
+
   {
     image: image3,
-    title: "30% DISCOUNT",
-    subTitle: "SUMMER 2026",
-    desc: "GET YOURS NOW",
+    title: "LATEST",
+    subTitle: "DUVET SERIES",
+    desc: "SHOP COLLECTION",
   },
 ];
 const Carousel = () => {
@@ -47,7 +47,7 @@ const Carousel = () => {
         src={images[index].image}
         alt="image 1"
         fill
-        className="object-cover"
+        className="object-cover  "
       />
       <div className="absolute flex flex-col items-center justify-center inset-0 text-[white] sm:text-2xl text-xl  font-bold">
         <p>{images[index].title}</p>

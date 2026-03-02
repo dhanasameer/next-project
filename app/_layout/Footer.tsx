@@ -6,7 +6,7 @@ import XLogo from "../../svg/XLogo";
 const Footer = () => {
   return (
     <div>
-      <div className="flex flex-col justify-center max-md:items-center max-md:gap-3 md:flex-row md:justify-between  md:px-50 px-6 py-4 bg-[#f1dff7] text-sm text-[#63564a] ">
+      <div className="flex flex-col justify-center max-md:items-center max-md:gap-3 md:flex-row md:justify-between  md:px-50 px-6 py-4 bg-[#f1e4f5] text-sm text-[#63564a] ">
         <span className="font-bold">E-Commerce</span>
         <div className="flex flex-col items-center">
           <span className="font-bold">Links</span>
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center bg-[#eacbf5] text-[#63564a] text-sm py-1">
+      <div className="text-center bg-[#faedff] text-[#63564a] text-sm py-1">
         Crafted by Urbanhub Innovations
       </div>
     </div>
