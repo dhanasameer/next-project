@@ -14,9 +14,9 @@ const images = [
   },
   {
     image: image2,
-    title: "UPTO 15% OFF ON ALL PRODUCTS",
+    title: "OFFER ENDS SOON",
     subTitle: "BLACK FRIDAY SALE",
-    desc: "OFFER ENDS SOON",
+    desc: "UPTO 15% OFF ON ALL PRODUCTS",
   },
   {
     image: image3,
