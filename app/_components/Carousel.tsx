@@ -14,14 +14,14 @@ const images = [
   },
   {
     image: image2,
-    subTitle: "NEW LINEN COLLECTION",
+    subTitle: " LINEN SERIES",
     desc: "GET YOURS NOW",
   },
 
   {
     image: image3,
-    title: "LATEST",
-    subTitle: "DUVET SERIES",
+    title: "LATEST IN",
+    subTitle: "DUVETS",
     desc: "SHOP COLLECTION",
   },
 ];
@@ -42,16 +42,16 @@ const Carousel = () => {
     }
   };
   return (
-    <div className="h-screen w-full relative">
+    <div className="h-[90vh] w-full relative">
       <Image
         src={images[index].image}
         alt="image 1"
         fill
-        className="object-cover  "
+        className="object-cover "
       />
-      <div className="absolute flex flex-col items-center justify-center inset-0 text-[white] sm:text-2xl text-xl  font-bold">
+      <div className="absolute flex flex-col items-center justify-center inset-0 text-[white]  font-bold text-sm sm:text-2xl md:text-3xl ">
         <p>{images[index].title}</p>
-        <p className="font-semibold text-3xl sm:text-5xl py-4">
+        <p className="font-semibold text-2xl sm:text-4xl md:text-5xl   py-4">
           {images[index].subTitle}
         </p>
         <p>{images[index].desc}</p>
