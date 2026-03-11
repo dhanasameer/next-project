@@ -6,9 +6,15 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, useForm } from "react-hook-form";
 const loginSchema = z.object({
-  email: z.string().email().min(5, "Email is Required"),
-  // password: z.string().min(8, "Minimum 8 Characters"),
+  email: z
+    .string()
+    .min(5, "Email should be minimum 5 characters")
+    .email({ message: "Invalid Email Format" }),
+
+  password: z.string().min(8, "Minimum 8 Characters"),
 });
+
+type Tlogin = z.infer<typeof loginSchema>;
 
 const page = () => {
   const {
@@ -17,7 +23,7 @@ const page = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(loginSchema) });
 
-  const submit = (data) => console.log(data);;
+  const submit = (data: Tlogin) => console.log(data);
   return (
     <form
       onSubmit={handleSubmit(submit)}
@@ -39,9 +45,15 @@ const page = () => {
             )}
           </div>
         </div>
-        {/* <div className="w-full ">
-          <Password title="Password" placeholder="Enter your password" />
-        </div> */}
+        <div className="w-full ">
+          <Password
+            title="Password"
+            placeholder="Enter your password"
+            register={register}
+            name="password"
+            errors={errors}
+          />
+        </div>
         <button type="submit" className="bg-[#f1dff7] w-full rounded-xl py-2">
           LOGIN
         </button>
