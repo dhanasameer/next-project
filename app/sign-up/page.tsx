@@ -7,14 +7,20 @@ import { Form, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const signupSchema = z.object({
-  username: z.string().min(1, "This field can't be empty"),
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email({ message: "Invalid Email Format" }),
-  password: z.string().min(8, "Minimum 8 Characters"),
-});
+const signupSchema = z
+  .object({
+    username: z.string().min(1, "This field can't be empty"),
+    email: z
+      .string()
+      .min(1, "Email is required")
+      .email({ message: "Invalid Email Format" }),
+    password: z.string().min(8, "Minimum 8 Characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 type Tsignup = z.infer<typeof signupSchema>;
 
@@ -28,7 +34,7 @@ const page = () => {
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      className="flex flex-col justify-center items-center my-10"
+      className="flex flex-col justify-center items-center my-10 text-[#63564a]"
     >
       <div className="shadow-2xl rounded-2xl flex flex-col gap-4  py-10 px-8 ">
         <div className="flex flex-col items-center">
@@ -77,16 +83,16 @@ const page = () => {
             title="Confirm Password"
             placeholder="Re-enter your password"
             register={register}
-            name="password"
+            name="confirmPassword"
             errors={errors}
           />
         </div>
         <button className="bg-[#f1dff7] p-2 rounded-xl ">Sign Up</button>
         <hr />
         <div>
-          Already have an account?{" "}
-          <Link href="/login" className="text-[#63564a]">
-            Login
+          Already have an account?
+          <Link href="/login" className="text-[#63564a] pl-2 underline">
+            LOGIN
           </Link>
         </div>
       </div>

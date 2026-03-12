@@ -18,24 +18,29 @@ const Password = ({ placeholder, title, register, name, errors }: Props) => {
   const handleClick = () => setShow(!show);
 
   return (
-    <div className=" flex flex-col gap-2">
-      <div className="font-semibold">{title}</div>
-      <div className="flex relative items-center">
-        <input
-          {...register(name)}
-          type={show ? "text" : "password"}
-          placeholder={placeholder}
-          className="border p-2 rounded-xl w-full "
-        />
-        {errors.password && (
-          <p className="text-red-700">{errors.password.message}</p>
-        )}
-
-        <button onClick={handleClick} className="size-6 absolute right-0 ">
-          {show ? <Hide /> : <Visibility />}
-        </button>
+    <div>
+      <div className=" flex flex-col gap-2 relative">
+        <div className="font-semibold">{title}</div>
+        <div className="flex items-center">
+          <input
+            {...register(name)}
+            type={show ? "text" : "password"}
+            placeholder={placeholder}
+            className="border p-2 rounded-xl w-full"
+          />
+   
+  
+          <button onClick={handleClick} className="size-6 absolute right-0 ">
+            {show ? <Hide /> : <Visibility />}
+          </button>
+        </div>
+        
       </div>
+             {errors[name] && (
+          <p className="text-red-700">{errors[name].message as string}</p>
+        )}
     </div>
+
   );
 };
 

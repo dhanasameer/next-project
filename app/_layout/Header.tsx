@@ -17,23 +17,22 @@ const Header = () => {
         <div className=" md:flex hidden  gap-6   ">
           <Link href="/">Home</Link>
           <Link href="/shop">Shop</Link>
-          <Link href="">About</Link>
-          <Link href="">Blog</Link>
+
           <Link
             href="/contact
           "
           >
             Contact
           </Link>
-          <Link href="">Page</Link>
+          <Link href="/login">Login</Link>
         </div>
 
         <div className="relative">
-          <Link href="">
+          <Link href="/cart">
             <Cart className=" size-6  " />
           </Link>
           <span className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2">
-            1
+            0
           </span>
         </div>
 
@@ -51,10 +50,9 @@ const Header = () => {
               <div className="flex flex-col absolute items-center justify-center inset-0 gap-5 ">
                 <Link href="/">HOME</Link>
                 <Link href="/shop">SHOP</Link>
-                <Link href="">ABOUT</Link>
-                <Link href="">BLOG</Link>
+
                 <Link href="/contact">CONTACT</Link>
-                <Link href="">PAGE</Link>
+                <Link href="">LOGIN</Link>
               </div>
             </div>
           )}
