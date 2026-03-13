@@ -3,6 +3,7 @@ import Image from "next/image";
 import image1 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
 import image2 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
 import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
+import Link from "next/link";
 
 const array = [
   {
@@ -94,9 +95,11 @@ const Cart = () => {
         <div className="text-xl">Item Total:</div>
         <div className="text-xl">Total:</div>
 
-        <button className="bg-white text-sm py-2 px-30 rounded-xl text-center ">
-          Proceed to Checkout
-        </button>
+        <Link href="/check-out">
+          <button className="bg-white text-sm py-2 px-30 rounded-xl text-center ">
+            Proceed to Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );
