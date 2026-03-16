@@ -14,8 +14,14 @@ const checkoutSchema = z.object({
   address: z.string().min(1, "Please enter Address"),
   city: z.string().min(1, "Please enter City"),
   state: z.string().min(1, "Please enter State"),
-  postcode: z.string().min(6, "Please enter Postcode"),
-  mobile: z.string().min(10, "Please enter Mobile Number"),
+  pinCode: z
+    .string()
+    .nonempty("Please enter Postcode")
+    .length(6, "Enter a valid Pin Code"), 
+  mobile: z
+    .string()
+    .nonempty("Please enter Mobile Number")
+    .length(10, "Enter a valid Mobile Number"),
 });
 type Tcheckout = z.infer<typeof checkoutSchema>;
 
@@ -41,12 +47,9 @@ const CheckOut = () => {
               {...register("country")}
               name="country"
               id="country"
-              className="border w-full py-2"
+              className="border w-full py-2 rounded-sm"
             >
-              {errors.country && (
-                <p className="text-red-700">{errors.country.message}</p>
-              )}
-              <option value="select">Select a Country</option>
+              <option value="">Select a Country</option>
               <option value="india">India</option>
               <option value="uae">UAE</option>
               <option value="saudi arabia">Saudi Arabia</option>
@@ -54,6 +57,9 @@ const CheckOut = () => {
               <option value="oman">Oman</option>
               <option value="bahrain">Bahrain</option>
             </select>
+            {errors.country && (
+              <p className="text-red-700">{errors.country.message}</p>
+            )}
           </div>
           <div className="flex gap-4  w-full">
             <div className="w-1/2">
@@ -124,22 +130,22 @@ const CheckOut = () => {
             )}
           </div>
           <div>
-            <div className="pb-2">Postcode</div>
+            <div className="pb-2">Pin Code</div>
             <input
-              {...register("postcode")}
-              type="text"
+              {...register("pinCode")}
+              type="number"
               className="border rounded-sm py-2 w-full"
             />
-            {errors.postcode && (
-              <p className="text-red-700">{errors.postcode.message}</p>
+            {errors.pinCode && (
+              <p className="text-red-700">{errors.pinCode.message}</p>
             )}
           </div>
           <div>
-            <div className="pb-2">Mobile Number</div>
+            <div className="pb-2 ">Mobile Number</div>
             <input
               {...register("mobile")}
-              type="text"
-              className="border rounded-sm py-2 w-full"
+              type="number"
+              className="border rounded-sm py-2 w-full "
             />
             {errors.mobile && (
               <p className="text-red-700">{errors.mobile.message}</p>
