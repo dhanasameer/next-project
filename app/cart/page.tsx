@@ -1,56 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import image1 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
 import image2 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
 import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
 import Link from "next/link";
-
-const array = [
-  {
-    image: image1,
-    product: "Duvet",
-    price: "5,000",
-    quantity: "2",
-    subtotal: "10,000",
-  },
-  {
-    image: image2,
-    product: "Pillow",
-    price: "500",
-    quantity: "1",
-    subtotal: "500",
-  },
-  {
-    image: image3,
-    product: "Bedding",
-    price: "2,500",
-    quantity: "1",
-    subtotal: "2,500",
-  },
-  {
-    image: image1,
-    product: "Bedding",
-    price: "5,000",
-    quantity: "1",
-    subtotal: "5,000",
-  },
-  {
-    image: image2,
-    product: "Quilt",
-    price: "3,000",
-    quantity: "1",
-    subtotal: "3,000",
-  },
-  {
-    image: image3,
-    product: "Bed Linen",
-    price: "5,000",
-    quantity: "2",
-    subtotal: "10,000",
-  },
-];
+import { useCart } from "react-use-cart";
+import { id } from "zod/locales";
 
 const Cart = () => {
+  const { updateItemQuantity, removeItem, items } = useCart();
+  console.log(items);
+
   return (
     <div className="grid grid-cols-3 h-screen text-[#63564a] ">
       <div className="col-span-2">
@@ -65,25 +26,47 @@ const Cart = () => {
               <th></th>
             </tr>
           </thead>
-          {array.map((items, index) => (
+          {items.map((item, index) => (
             <tbody className="text-center" key={index}>
               <tr>
                 <td className="py-2 px-10">
                   <div className="h-20 w-20 relative">
                     <Image
-                      src={items.image}
+                      src={item.image}
                       alt=""
                       fill
                       className=" object-cover"
                     />
                   </div>
                 </td>
-                <td>{items.product}</td>
-                <td>{items.price}</td>
-                <td>{items.quantity} </td>
-                <td>{items.subtotal}</td>
+                <td>{item.name}</td>
+                <td>{item.price?.toLocaleString()}</td>
                 <td>
-                  <button>Delete</button>
+                  <button
+                    onClick={() => {
+                      updateItemQuantity(item.id, (item.quantity ?? 0) - 1);
+                    }}
+                  >
+                    -
+                  </button>
+                  {item.quantity}{" "}
+                  <button
+                    onClick={() =>
+                      updateItemQuantity(item.id, (item.quantity ?? 0) + 1)
+                    }
+                  >
+                    +
+                  </button>
+                </td>
+                <td>{item.itemTotal?.toLocaleString()}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      removeItem(item.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>

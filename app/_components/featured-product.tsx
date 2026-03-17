@@ -8,49 +8,49 @@ import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
 const array = [
   {
     image: image1,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image2,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image3,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Blue) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image1,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image2,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image3,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Blue) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image1,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
   {
     image: image2,
-    name: "Duvet Set - 3 Piece",
+    name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
     price: "₹3999",
   },
@@ -65,7 +65,7 @@ const FeaturedProduct = () => {
         <h2 className="font-bold text-sm sm:text-2xl md:text-3xl ">SHOP NOW</h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4   h-screen">
+      <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2  h-screen">
         {array.map((items, index) => (
           <Card
             key={index}

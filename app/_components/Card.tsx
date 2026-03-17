@@ -13,7 +13,7 @@ const Card = ({ image, name, category, price }: Props) => {
     <div className=" mx-2 my-5 rounded-[20] overflow-hidden shadow-2xl text-[#63564a]  ">
       <div
         className=" 
-      h-[65%] relative"
+      h-50 relative"
       >
         <Image src={image} alt="image" fill className="h-full object-cover " />
       </div>

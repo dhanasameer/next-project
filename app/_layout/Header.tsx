@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import Cart from "../../svg/Cart";
 import Hamburger from "../../svg/Hamburger";
 import Close from "../../svg/Close";
+import { useCart } from "react-use-cart";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const { totalUniqueItems } = useCart();
   return (
     <div className=" text-[#63564a]  flex  justify-between  items-center m-5  md:m-10  ">
       <div className="max-md:text-[20px]  text-3xl font-bitcount_grid_double_ink ">
@@ -31,9 +33,9 @@ const Header = () => {
           <Link href="/cart">
             <Cart className=" size-6  " />
           </Link>
-          <span className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2">
-            0
-          </span>
+          <div className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2" >
+            {totalUniqueItems}
+          </div>
         </div>
 
         <div>

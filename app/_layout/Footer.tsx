@@ -6,19 +6,19 @@ import XLogo from "../../svg/XLogo";
 const Footer = () => {
   return (
     <div>
-      <div className="flex flex-col justify-center max-md:items-center max-md:gap-3 md:flex-row md:justify-between  md:px-50 px-6 py-4 bg-[#f1e4f5] text-sm text-[#63564a] ">
-        <span className="font-bold">E-Commerce</span>
-        <div className="flex flex-col items-center">
-          <span className="font-bold">Links</span>
+      <div className="flex flex-col justify-center max-md:items-center max-md:gap-3 md:flex-row md:justify-between   px-6 py-4 bg-[#f1e4f5] text-sm text-[#63564a]  ">
+        <div className="font-bold w-full text-center">E-Commerce</div>
+        <div className="flex flex-col items-center w-full">
+          <div className="font-bold ">Links</div>
           <div className="flex gap-4">
             <Link href="">Login</Link>
             <Link href="">Contact</Link>
             <Link href="">Shop</Link>
           </div>
         </div>
-        <div className="flex flex-col max-md:justify-center max-md:items-center gap-0.5">
-          <span className="font-bold">Get In Touch</span>
-          <span>Kannur </span>
+        <div className="flex flex-col max-md:justify-center max-md:items-center gap-0.5 w-full">
+          <div className="font-bold">Get In Touch</div>
+          <div>Kannur, Kerala, India </div>
           <div className="flex gap-3 items-center">
             <Link href="">
               <IgLogo className="size-5" />
