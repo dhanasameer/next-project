@@ -15,9 +15,9 @@ const array = [
 
 const Page = () => {
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center   ">
       <div className="font-bold text-[#63564a] text-xl">CATEGORIES</div>
-      <div className="flex justify-around w-full my-10  ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 my-10  ">
         {array.map((items, index) => (
           <CategoryCard
             key={index}

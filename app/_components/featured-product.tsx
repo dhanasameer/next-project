@@ -10,49 +10,49 @@ const array = [
     image: image1,
     name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image2,
     name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image3,
     name: "Duvet Set (Blue) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image1,
     name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image2,
     name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image3,
     name: "Duvet Set (Blue) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image1,
     name: "Duvet Set (Lavender) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
   {
     image: image2,
     name: "Duvet Set (Red) - 3 Piece",
     category: "Bedding",
-    price: "₹3999",
+    price: 3999,
   },
 ];
 const FeaturedProduct = () => {
@@ -65,7 +65,7 @@ const FeaturedProduct = () => {
         <h2 className="font-bold text-sm sm:text-2xl md:text-3xl ">SHOP NOW</h2>
       </div>
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2  h-screen">
+      <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  ">
         {array.map((items, index) => (
           <Card
             key={index}

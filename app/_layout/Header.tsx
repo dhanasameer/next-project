@@ -33,15 +33,15 @@ const Header = () => {
           <Link href="/cart">
             <Cart className=" size-6  " />
           </Link>
-          <div className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2" >
+          <div className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2">
             {totalUniqueItems}
           </div>
         </div>
 
-        <div>
+       
           <Hamburger
             onClick={() => setMenu(true)}
-            className="size-6 flex md:hidden"
+            className="size-6 flex md:hidden cursor-pointer"
           />
           {menu === true && (
             <div className="bg-[#f1dff7] w-[250] right-0 z-50 h-screen fixed top-0">
@@ -58,7 +58,7 @@ const Header = () => {
               </div>
             </div>
           )}
-        </div>
+        
       </div>
     </div>
   );
