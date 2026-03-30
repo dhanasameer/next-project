@@ -28,19 +28,16 @@ const Password = ({ placeholder, title, register, name, errors }: Props) => {
             placeholder={placeholder}
             className="border p-2 rounded-xl w-full"
           />
-   
-  
+
           <button onClick={handleClick} className="size-6 absolute right-0 ">
             {show ? <Hide /> : <Visibility />}
           </button>
         </div>
-        
       </div>
-             {errors[name] && (
-          <p className="text-red-700">{errors[name].message as string}</p>
-        )}
+      {errors[name] && (
+        <p className="text-red-700">{errors[name].message as string}</p>
+      )}
     </div>
-
   );
 };
 

@@ -9,7 +9,7 @@ import image4 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
 const array = [
   { image: image1, category: "BEDDING" },
   { image: image2, category: "TABLE LINEN" },
-  { image: image3, category: "CURTAINS" },
+  { image: image3, category: "CURTAIN" },
   { image: image4, category: "HOME DECOR" },
 ];
 
