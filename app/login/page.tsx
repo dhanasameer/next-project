@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import React from "react";
 import Password from "../_components/password";
 import Link from "next/link";
