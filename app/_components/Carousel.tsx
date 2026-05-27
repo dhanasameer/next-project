@@ -10,26 +10,26 @@ import { useQuery } from "@tanstack/react-query";
 import { bannerApi } from "@/api/frontend-apis";
 import { storageUrl } from "@/utils/base_url";
 
-const images = [
-  {
-    image: image1,
-    title: "30% DISCOUNT",
-    subTitle: "SUMMER 2026",
-    desc: "OFFER ENDS SOON",
-  },
-  {
-    image: image2,
-    subTitle: " LINEN SERIES",
-    desc: "GET YOURS NOW",
-  },
+// const images = [
+//   {
+//     image: image1,
+//     title: "30% DISCOUNT",
+//     subTitle: "SUMMER 2026",
+//     desc: "OFFER ENDS SOON",
+//   },
+//   {
+//     image: image2,
+//     subTitle: " LINEN SERIES",
+//     desc: "GET YOURS NOW",
+//   },
 
-  {
-    image: image3,
-    title: "LATEST IN",
-    subTitle: "DUVETS",
-    desc: "SHOP COLLECTION",
-  },
-];
+//   {
+//     image: image3,
+//     title: "LATEST IN",
+//     subTitle: "DUVETS",
+//     desc: "SHOP COLLECTION",
+//   },
+// ];
 
 const Carousel = () => {
   const [index, setIndex] = useState<number>(0);
@@ -77,13 +77,13 @@ const Carousel = () => {
       />
 
       <div className="absolute flex flex-col items-center justify-center inset-0 text-[white]  font-bold text-sm sm:text-2xl md:text-3xl ">
-        <p>{images[index].title}</p>
+        <p>{banners[index].name}</p>
 
-        <p className="font-semibold text-2xl sm:text-4xl md:text-5xl   py-4">
+        {/* <p className="font-semibold text-2xl sm:text-4xl md:text-5xl   py-4">
           {images[index].subTitle}
-        </p>
+        </p>*/}
 
-        <p>{images[index].desc}</p>
+        <p>{banners[index].description}</p>
       </div>
 
       <NextArrow

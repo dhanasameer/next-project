@@ -1,44 +1,43 @@
 "use client";
 import Card from "@/app/_components/Card";
 import React, { useState } from "react";
-import Image from "next/image";
-import image1 from "../../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
-import image2 from "../../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
-import image3 from "../../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
 import Link from "next/link";
 import Add from "@/svg/Add";
 import { useCart } from "react-use-cart";
-const array = [
-  {
-    id: "1",
-    image: image1,
-    name: "Duvet Set (Red) - 3 Piece",
-    category: "Bedding",
-    price: 2999,
-  },
-  {
-    id: "2",
-    image: image2,
-    name: "Duvet Set (Lavender) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    id: "3",
-    image: image3,
-    name: "Duvet Set (Blue) - 3 Piece",
-    category: "Bedding",
-    price: 2499,
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { productApi } from "@/api/frontend-apis";
+import { useParams } from "next/navigation";
+import { storageUrl } from "@/utils/base_url";
 
 const page = () => {
   const [search, setSearch] = useState("");
 
   const { addItem, items } = useCart();
-  console.log(items);
 
-  const newSearch = array.filter((item) =>
+  const params = useParams();
+
+  const categoryid = params.products;
+
+  const {
+    data: response,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["products by category", categoryid],
+    queryFn: () => productApi.getProductsByCategory(categoryid as string),
+  });
+
+  console.log(response);
+
+  const products = response?.data.data.products;
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (error instanceof Error) {
+    return <p>{error.message}</p>;
+  }
+
+  const newSearch = products.filter((item: any) =>
     item.name.toLowerCase().includes(search.toLowerCase()),
   );
 
@@ -56,11 +55,13 @@ const page = () => {
             setSearch(event.target.value);
           }}
         />
-        <div className="font-bold text-3xl">3 PRODUCTS</div>
+        <div className="font-bold text-3xl">
+          {products.length} {products.length == 1 ? "PRODUCT" : "PRODUCTS"}{" "}
+        </div>
         <button>Sort by Price</button>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4   h-screen">
-        {newSearch.map((items, index) => (
+        {newSearch.map((items: any, index: number) => (
           <div key={index} className="relative">
             <Link
               href={`/shop/products/${items.name} `}
@@ -68,13 +69,13 @@ const page = () => {
             >
               <Card
                 key={index}
-                image={items.image}
+                image={storageUrl + items.image}
                 name={items.name}
-                category={items.category}
+                category={items.name}
                 price={items.price}
               />
             </Link>
-            <button onClick={() => addItem(array[index])}>
+            <button onClick={() => addItem(products[index])}>
               <Add className="absolute top-5 right-5 z-50 size-10 " />
             </button>
           </div>
