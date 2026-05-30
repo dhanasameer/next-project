@@ -2,14 +2,10 @@
 
 import React from "react";
 import CategoryCard from "../_components/category-card";
-import Image from "next/image";
-import image1 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
-import image2 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
-import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
-import image4 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
+
 import { useQuery } from "@tanstack/react-query";
-import { categoryApi } from "@/api/frontend-apis";
 import { storageUrl } from "@/utils/base_url";
+import { frontendApi } from "@/api/frontend-apis";
 
 const Page = () => {
   const {
@@ -18,7 +14,7 @@ const Page = () => {
     error,
   } = useQuery({
     queryKey: ["categories"],
-    queryFn: categoryApi.getAllCategories,
+    queryFn: frontendApi.getAllCategories,
   });
 
   console.log(response);

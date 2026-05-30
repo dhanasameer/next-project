@@ -2,12 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import image1 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
-import image2 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
-import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
+
 import { useQuery } from "@tanstack/react-query";
-import { categoryApi } from "@/api/frontend-apis";
+import { frontendApi } from "@/api/frontend-apis";
 import { storageUrl } from "@/utils/base_url";
+import Link from "next/link";
 
 const Category = () => {
   const {
@@ -16,7 +15,7 @@ const Category = () => {
     error,
   } = useQuery({
     queryKey: ["categories"],
-    queryFn: categoryApi.getAllCategories,
+    queryFn: frontendApi.getAllCategories,
   });
 
   console.log(response);
@@ -43,55 +42,62 @@ const Category = () => {
 
       <div className="grid grid-cols-3 grid-rows-2 col-span-1 gap-2 px-2 py-2 h-[50vh] md:h-[80vh] ">
         <div className="relative row-span-2 ">
-          <Image
-            src={storageUrl + categories[0].image}
-            fill
-            alt="image1"
-            className="object-cover  h-full w-full"
-          />
+          <Link href={`/shop/${categories[0]._id}`}>
+            <Image
+              src={storageUrl + categories[0].image}
+              fill
+              alt="image1"
+              className="object-cover  h-full w-full"
+            />
 
-          <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
-            BEDDING
-          </div>
+            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+              BEDDING
+            </div>
+          </Link>
         </div>
 
         <div className="relative row-span-2">
-          <Image
-            src={storageUrl + categories[1].image}
-            fill
-            alt="image1"
-            className="object-cover  h-full w-full"
-          />
+          <Link href={`/shop/${categories[1]._id}`}>
+            <Image
+              src={storageUrl + categories[1].image}
+              fill
+              alt="image1"
+              className="object-cover  h-full w-full"
+            />
 
-          <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
-            TABLE LINEN
-          </div>
+            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+              TABLE LINEN
+            </div>
+          </Link>
         </div>
 
         <div className="relative row-span-1">
-          <Image
-            src={storageUrl + categories[2].image}
-            fill
-            alt="image1"
-            className="object-cover h-full w-full  "
-          />
+          <Link href={`/shop/${categories[2]._id}`}>
+            <Image
+              src={storageUrl + categories[2].image}
+              fill
+              alt="image1"
+              className="object-cover h-full w-full  "
+            />
 
-          <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
-            CURTAIN
-          </div>
+            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+              CURTAIN
+            </div>
+          </Link>
         </div>
 
         <div className="relative row-span-1">
-          <Image
-            src={storageUrl + categories[3].image}
-            fill
-            alt="image1"
-            className="object-cover h-full w-full "
-          />
-
-          <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
-            HOME DECOR
-          </div>
+          <Link href={`/shop/${categories[3]._id}`}>
+            <Image
+              src={storageUrl + categories[3].image}
+              fill
+              alt="image1"
+              className="object-cover h-full w-full "
+            />
+            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+              HOME DECOR
+            </div>
+          </Link>
         </div>
       </div>
     </div>
