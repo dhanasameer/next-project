@@ -1,61 +1,32 @@
+"use client";
+
 import React from "react";
 import Card from "./Card";
-import Image from "next/image";
-import image1 from "../../public/images/S45bf3b8b511e4c8ab6a64844fc6556e2u.webp";
-import image2 from "../../public/images/593dbc5d1e8f0af0d4fd35914d63a4ee.jpg";
-import image3 from "../../public/images/ddca409f09495515caf83acbf64f05b5.jpg";
+import { useQuery } from "@tanstack/react-query";
+import { frontendApi } from "@/api/frontend-apis";
+import { storageUrl } from "@/utils/base_url";
+import Link from "next/link";
 
-const array = [
-  {
-    image: image1,
-    name: "Duvet Set (Lavender) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image2,
-    name: "Duvet Set (Red) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image3,
-    name: "Duvet Set (Blue) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image1,
-    name: "Duvet Set (Lavender) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image2,
-    name: "Duvet Set (Red) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image3,
-    name: "Duvet Set (Blue) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image1,
-    name: "Duvet Set (Lavender) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-  {
-    image: image2,
-    name: "Duvet Set (Red) - 3 Piece",
-    category: "Bedding",
-    price: 3999,
-  },
-];
 const FeaturedProduct = () => {
+  const {
+    data: response,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["featured products"],
+    queryFn: frontendApi.getFeaturedProducts,
+  });
+
+  console.log(response);
+
+  const featuredProducts = response?.data.data.featuredProducts;
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (error instanceof Error) {
+    return <p>{error.message}</p>;
+  }
+
   return (
     <div>
       <div className="flex flex-col gap-5 justify-center items-center py-10 text-[#63564a]">
@@ -66,14 +37,15 @@ const FeaturedProduct = () => {
       </div>
 
       <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  ">
-        {array.map((items, index) => (
-          <Card
-            key={index}
-            image={items.image}
-            name={items.name}
-            category={items.category}
-            price={items.price}
-          />
+        {featuredProducts.map((items: any, index: number) => (
+          <Link key={index} href={`/shop/products/${items._id}`}>
+            <Card
+              image={storageUrl + items.image}
+              name={items.name}
+              category={items.categoryDetails.name}
+              price={items.price}
+            />
+          </Link>
         ))}
       </div>
     </div>

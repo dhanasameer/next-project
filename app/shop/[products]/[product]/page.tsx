@@ -5,10 +5,13 @@ import Image from "next/image";
 import { CartProvider, useCart } from "react-use-cart";
 import { useQuery } from "@tanstack/react-query";
 import { frontendApi } from "@/api/frontend-apis";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { storageUrl } from "@/utils/base_url";
+import Link from "next/link";
 
 const page = () => {
+  const router = useRouter();
+
   const { addItem, items } = useCart();
 
   console.log(items);
@@ -36,6 +39,20 @@ const page = () => {
     return <p>{error.message}</p>;
   }
 
+  const isInCart = items.some((item) => item.id === product[0]._id);
+
+  const handleCartAction = () => {
+    if (isInCart) {
+      router.push("/cart");
+    } else {
+      addItem({
+        ...product[0],
+
+        id: product[0]._id,
+      });
+    }
+  };
+
   return (
     <div className="flex items-center text-[#63564a] my-10">
       <div className="relative h-[60vh] w-[50vh] ">
@@ -57,16 +74,10 @@ const page = () => {
           <button
             className="bg-[#63564a] text-white text-center p-2 rounded-xs cursor-pointer"
             onClick={() => {
-              console.log(product[0]);
-
-              addItem({
-                ...product[0],
-
-                id: product[0]._id,
-              });
+              handleCartAction();
             }}
           >
-            Add to Cart
+            {isInCart ? "Go to Cart" : "Add to Cart"}
           </button>
         </div>
       </div>

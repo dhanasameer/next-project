@@ -79,7 +79,14 @@ const page = () => {
               />
             </Link>
 
-            <button onClick={() => addItem(products[index])}>
+            <button
+              onClick={() =>
+                addItem({
+                  ...products[index],
+                  id: products[index]._id,
+                })
+              }
+            >
               <Add className="absolute top-5 right-5 z-50 size-10 " />
             </button>
           </div>

@@ -18,7 +18,7 @@ const Category = () => {
     queryFn: frontendApi.getAllCategories,
   });
 
-  console.log(response);
+  // console.log(response);
 
   const categories = response?.data.data.categories;
 

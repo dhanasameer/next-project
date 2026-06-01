@@ -8,8 +8,6 @@ import { storageUrl } from "@/utils/base_url";
 const Cart = () => {
   const { updateItemQuantity, removeItem, items } = useCart();
 
-  console.log(items);
-
   return (
     <div className="grid grid-cols-3 h-screen text-[#63564a] ">
       <div className="col-span-2">
@@ -51,7 +49,10 @@ const Cart = () => {
                 <td>
                   <button
                     onClick={() => {
-                      updateItemQuantity(item.id, (item.quantity ?? 0) - 1);
+                      updateItemQuantity(
+                        item.id,
+                        Math.max(1, (item.quantity ?? 0) - 1),
+                      );
                     }}
                   >
                     -

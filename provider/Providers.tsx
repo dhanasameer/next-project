@@ -9,13 +9,7 @@ const ProviderClient = ({ children }: Props) => {
   
   const [queryClient] = useState(
     () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 1000 * 60,
-          },
-        },
-      }),
+      new QueryClient(),
   );
 
   return (
