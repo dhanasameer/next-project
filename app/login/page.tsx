@@ -1,10 +1,11 @@
- "use client";
+"use client";
 import React from "react";
 import Password from "../_components/password";
 import Link from "next/link";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, useForm } from "react-hook-form";
+import { googleSignInLink } from "@/utils/base_url";
 const loginSchema = z.object({
   email: z
     .string()
@@ -53,12 +54,17 @@ const page = () => {
             errors={errors}
           />
         </div>
-       
-          <button type="submit" className="bg-[#f1dff7] w-full rounded-xl py-2">
-            LOGIN
-          </button>
-       
+
+        <button type="submit" className="bg-[#f1dff7] w-full rounded-xl py-2">
+          LOGIN
+        </button>
+
         <hr />
+
+        <div className="underline">
+          <Link href={googleSignInLink as string}>Sign in with Google </Link>
+        </div>
+
         <div>
           Don't have an account?
           <Link href="/sign-up" className="text-[#63564a] pl-2 underline">
