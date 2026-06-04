@@ -17,7 +17,7 @@ const FeaturedProduct = () => {
     queryFn: frontendApi.getFeaturedProducts,
   });
 
-  console.log(response);
+  // console.log(response);
 
   const featuredProducts = response?.data.data.featuredProducts;
 

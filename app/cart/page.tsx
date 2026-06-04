@@ -8,6 +8,26 @@ import { storageUrl } from "@/utils/base_url";
 const Cart = () => {
   const { updateItemQuantity, removeItem, items } = useCart();
 
+  if (items.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <h1 className="text-3xl font-semibold text-[#63564a]">
+          Your cart is empty
+        </h1>
+
+        <p className="text-gray-500">
+          Looks like you haven't added anything yet.
+        </p>
+
+        <Link href="/">
+          <button className="bg-[#63564a] text-white px-6 py-3 rounded-lg">
+            Continue Shopping
+          </button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-3 h-screen text-[#63564a] ">
       <div className="col-span-2">
