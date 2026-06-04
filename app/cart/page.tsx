@@ -4,9 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "react-use-cart";
 import { storageUrl } from "@/utils/base_url";
+import { useQuery } from "@tanstack/react-query";
+import { frontendApi } from "@/api/frontend-apis";
 
 const Cart = () => {
   const { updateItemQuantity, removeItem, items } = useCart();
+
+
 
   if (items.length === 0) {
     return (

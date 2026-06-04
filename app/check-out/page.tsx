@@ -3,35 +3,76 @@ import React from "react";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, useForm } from "react-hook-form";
+import { frontendApi } from "@/api/frontend-apis";
+import { useMutation } from "@tanstack/react-query";
+import { Item, useCart } from "react-use-cart";
+
 const checkoutSchema = z.object({
   country: z.string().nonempty("Please select a Country"),
+
   firstName: z.string().min(1, "Please enter First Name"),
+
   lastName: z.string().min(1, "Please enter Last Name"),
-  email: z
+
+  emailAddress: z
     .string()
     .min(1, "Please enter Email Address")
     .email({ message: "Invalid Email Format" }),
+
   address: z.string().min(1, "Please enter Address"),
+
   city: z.string().min(1, "Please enter City"),
+
   state: z.string().min(1, "Please enter State"),
+
   pinCode: z
     .string()
     .nonempty("Please enter Postcode")
-    .length(6, "Enter a valid Pin Code"), 
-  mobile: z
+    .length(6, "Enter a valid Pin Code"),
+
+  phoneNumber: z
     .string()
     .nonempty("Please enter Mobile Number")
     .length(10, "Enter a valid Mobile Number"),
 });
-type Tcheckout = z.infer<typeof checkoutSchema>;
+export type Tcheckout = z.infer<typeof checkoutSchema>;
 
 const CheckOut = () => {
+  const { items } = useCart();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(checkoutSchema) });
-  const submit = (data: Tcheckout) => console.log(data);
+
+  const createOrderMutation = useMutation({
+    mutationFn: async ({
+      cartItems,
+      billingDetails,
+    }: {
+      cartItems: Item[];
+      billingDetails: Tcheckout;
+    }) =>
+      await frontendApi.createOrder({
+        cartItems,
+        billingDetails,
+      }),
+
+    onSuccess: () => {},
+
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const submit = (data: Tcheckout) => {
+    createOrderMutation.mutate({
+      cartItems: items,
+      billingDetails: data,
+    });
+  };
+
   return (
     <form
       className="grid grid-cols-3  text-[#63564a] m-5  "
@@ -88,12 +129,12 @@ const CheckOut = () => {
           <div>
             <div>Email Address</div>
             <input
-              {...register("email")}
+              {...register("emailAddress")}
               type="text"
               className="border rounded-sm py-2 w-full"
             />
-            {errors.email && (
-              <p className="text-red-700">{errors.email.message}</p>
+            {errors.emailAddress && (
+              <p className="text-red-700">{errors.emailAddress.message}</p>
             )}
           </div>
           <div>
@@ -143,12 +184,12 @@ const CheckOut = () => {
           <div>
             <div className="pb-2 ">Mobile Number</div>
             <input
-              {...register("mobile")}
+              {...register("phoneNumber")}
               type="number"
               className="border rounded-sm py-2 w-full "
             />
-            {errors.mobile && (
-              <p className="text-red-700">{errors.mobile.message}</p>
+            {errors.phoneNumber && (
+              <p className="text-red-700">{errors.phoneNumber.message}</p>
             )}
           </div>
         </div>
