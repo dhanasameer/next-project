@@ -6,6 +6,7 @@ import { Form, useForm } from "react-hook-form";
 import { frontendApi } from "@/api/frontend-apis";
 import { useMutation } from "@tanstack/react-query";
 import { Item, useCart } from "react-use-cart";
+import { useRouter } from "next/navigation";
 
 const checkoutSchema = z.object({
   country: z.string().nonempty("Please select a Country"),
@@ -16,7 +17,9 @@ const checkoutSchema = z.object({
 
   emailAddress: z
     .string()
+
     .min(1, "Please enter Email Address")
+
     .email({ message: "Invalid Email Format" }),
 
   address: z.string().min(1, "Please enter Address"),
@@ -27,39 +30,59 @@ const checkoutSchema = z.object({
 
   pinCode: z
     .string()
+
     .nonempty("Please enter Postcode")
+
     .length(6, "Enter a valid Pin Code"),
 
   phoneNumber: z
     .string()
+
     .nonempty("Please enter Mobile Number")
+
     .length(10, "Enter a valid Mobile Number"),
 });
+
 export type Tcheckout = z.infer<typeof checkoutSchema>;
 
 const CheckOut = () => {
+  const router = useRouter();
+
   const { items } = useCart();
 
   const {
     register,
+
     handleSubmit,
+
     formState: { errors },
-  } = useForm({ resolver: zodResolver(checkoutSchema) });
+  } = useForm({
+    resolver: zodResolver(checkoutSchema),
+  });
 
   const createOrderMutation = useMutation({
     mutationFn: async ({
       cartItems,
+
       billingDetails,
     }: {
       cartItems: Item[];
+
       billingDetails: Tcheckout;
-    }) =>
-      await frontendApi.createOrder({
+    }) => {
+      const res = await frontendApi.createOrder({
         cartItems,
         billingDetails,
-      }),
+      });
 
-    onSuccess: () => {},
+      return res;
+    },
+
+    onSuccess: (res) => {
+      router.push(
+        `/payment?sessionId=${res.data.data.sessionId}&amount=${res.data.data.amount}`,
+      );
+    },
 
     onError: (error) => {
       console.log(error);
@@ -69,6 +92,7 @@ const CheckOut = () => {
   const submit = (data: Tcheckout) => {
     createOrderMutation.mutate({
       cartItems: items,
+
       billingDetails: data,
     });
   };
@@ -80,6 +104,7 @@ const CheckOut = () => {
     >
       <div className="col-span-2 pr-20">
         <div className="font-bold pb-4">Shipping Address</div>
+
         <div className="flex flex-col gap-4 text-[14px]">
           <div>
             <div className="pb-2">Country</div>
@@ -91,122 +116,160 @@ const CheckOut = () => {
               className="border w-full py-2 rounded-sm"
             >
               <option value="">Select a Country</option>
+
               <option value="india">India</option>
+
               <option value="uae">UAE</option>
+
               <option value="saudi arabia">Saudi Arabia</option>
+
               <option value="kuwait">Kuwait</option>
+
               <option value="oman">Oman</option>
+
               <option value="bahrain">Bahrain</option>
             </select>
+
             {errors.country && (
               <p className="text-red-700">{errors.country.message}</p>
             )}
           </div>
+
           <div className="flex gap-4  w-full">
             <div className="w-1/2">
               <div className="pb-2">First Name</div>
+
               <input
                 {...register("firstName")}
                 type="text"
                 className="border rounded-sm py-2 w-full"
               />
+
               {errors.firstName && (
                 <p className="text-red-700">{errors.firstName.message}</p>
               )}
             </div>
+
             <div className="w-1/2">
               <div className="pb-2">Last Name</div>
+
               <input
                 {...register("lastName")}
                 type="text"
                 className="border rounded-sm py-2 w-full"
               />
+
               {errors.lastName && (
                 <p className="text-red-700">{errors.lastName.message}</p>
               )}
             </div>
           </div>
+
           <div>
             <div>Email Address</div>
+
             <input
               {...register("emailAddress")}
               type="text"
               className="border rounded-sm py-2 w-full"
             />
+
             {errors.emailAddress && (
               <p className="text-red-700">{errors.emailAddress.message}</p>
             )}
           </div>
+
           <div>
             <div>Address</div>
+
             <input
               {...register("address")}
               type="text"
               className="border rounded-sm py-2 w-full"
             />
+
             {errors.address && (
               <p className="text-red-700">{errors.address.message}</p>
             )}
           </div>
+
           <div>
             <div className="pb-2">City</div>
+
             <input
               {...register("city")}
               type="text"
               className="border rounded-sm py-2 w-full"
             />
+
             {errors.city && (
               <p className="text-red-700">{errors.city.message}</p>
             )}
           </div>
+
           <div>
             <div className="pb-2">State</div>
+
             <input
               {...register("state")}
               type="text"
               className="border rounded-sm py-2 w-full"
             />
+
             {errors.state && (
               <p className="text-red-700">{errors.state.message}</p>
             )}
           </div>
+
           <div>
             <div className="pb-2">Pin Code</div>
+
             <input
               {...register("pinCode")}
               type="number"
               className="border rounded-sm py-2 w-full"
             />
+
             {errors.pinCode && (
               <p className="text-red-700">{errors.pinCode.message}</p>
             )}
           </div>
+
           <div>
             <div className="pb-2 ">Mobile Number</div>
+
             <input
               {...register("phoneNumber")}
               type="number"
               className="border rounded-sm py-2 w-full "
             />
+
             {errors.phoneNumber && (
               <p className="text-red-700">{errors.phoneNumber.message}</p>
             )}
           </div>
         </div>
       </div>
+
       <div className="flex flex-col gap-4 ">
         <div className="font-bold">Order Summary</div>
+
         <div className="border border-[#63564a] p-10 flex flex-col gap-4 rounded-xl text-[14px]">
           <div className="flex justify-between">
             <div>Subtotal</div>
+
             <div>₹2599</div>
           </div>
+
           <div className="flex justify-between">
             <div>Shipping</div>
-            <div>₹99</div>
+
+            <div>₹20</div>
           </div>
+
           <div className="flex justify-between font-bold">
             <div>Total</div>
+
             <div>₹2698</div>
           </div>
 
