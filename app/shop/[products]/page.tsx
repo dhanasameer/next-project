@@ -47,26 +47,25 @@ const page = () => {
 
   return (
     <div className="text-[#63564a]">
-      <div className="flex justify-between items-center px-2">
+      <div className="flex justify-between items-center clamp-[px,8px,16px]">
         <input
           type="text"
           placeholder="Search"
-          className="text-[#63564a] outline-0 border-2 p-2 rounded-full
-        "
+          className="text-[#63564a] outline-0 border-2 rounded-full clamp-[p,8px,12px] clamp-[text,14px,18px]"
           value={search}
           onChange={(event) => {
             setSearch(event.target.value);
           }}
         />
 
-        <div className="font-bold text-3xl">
+        <div className="font-bold clamp-[text,20px,36px]">
           {products.length} {products.length == 1 ? "PRODUCT" : "PRODUCTS"}
         </div>
 
-        <button>Sort by Price</button>
+        <button className="clamp-[text,14px,18px]">Sort by Price</button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4   h-screen">
+      <div className="grid grid-cols-2 md:grid-cols-4">
         {newSearch.map((items: any, index: number) => (
           <div key={index} className="relative">
             <Link href={`/shop/products/${items._id} `} className="cursor-auto">
@@ -87,7 +86,7 @@ const page = () => {
                 })
               }
             >
-              <Add className="absolute top-5 right-5 z-50 size-10 " />
+              <Add className="absolute top-5 right-5 z-50 clamp-[w,30px,40px] clamp-[h,30px,40px]" />
             </button>
           </div>
         ))}

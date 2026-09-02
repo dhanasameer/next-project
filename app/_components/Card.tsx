@@ -12,33 +12,23 @@ type Props = {
 const Card = ({ image, name, category, price }: Props) => {
   return (
     <div>
-      <div className=" mx-2 my-5 rounded-[20] overflow-hidden shadow-2xl text-[#63564a]  ">
-        <div
-          className=" 
-        h-50 relative"
-        >
-          <Image
-            src={image}
-            alt="image"
-            fill
-            className="h-full object-cover "
-          />
+      <div className="mx-2 my-5 rounded-[20px] overflow-hidden shadow-2xl text-[#63564a]">
+        <div className="relative clamp-[h,180px,250px]">
+          <Image src={image} alt="image" fill className="object-cover" />
         </div>
 
-        <div className=" p-2 flex flex-col gap-2 ">
-          <div className="font-bold  text-[16px] sm:text-[18px] md:text-[20px] ">
-            {name}
-          </div>
+        <div className="p-2 flex flex-col clamp-[gap,6px,12px]">
+          <div className="font-bold clamp-[text,16px,20px]">{name}</div>
 
-          <div className=" text-[14px] sm:text-[10px] md:text-[16px] ">
-            {category}
-          </div>
+          <div className="clamp-[text,12px,16px]">{category}</div>
 
           <hr className="text-[#c2bab2]" />
 
-          <div className=" text-[14px] sm:text-[18px] md:text-[22px]  font-bold text-[#3b332c]">
+          <div className="font-bold text-[#3b332c] clamp-[text,18px,22px]">
             ₹{price}
-            <span className="text-[12px] text-[#63564a] pl-1">INR</span>
+            <span className="text-[#63564a] pl-1 clamp-[text,10px,12px]">
+              INR
+            </span>
           </div>
         </div>
       </div>

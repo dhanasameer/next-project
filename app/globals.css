@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&display=swap");
 @import "tailwindcss";
+
+@plugin "tailwind-clamp" {
+  minsize: 25rem;
+  maxsize: 80rem;
+}
+
 @theme {
   --font-bitcount_grid_double_ink:
     "Bitcount Grid Double Ink", arial, sans-serif;

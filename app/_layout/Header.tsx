@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Cart from "../../svg/Cart";
@@ -8,35 +9,29 @@ import { useCart } from "react-use-cart";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
-
   const [token, setToken] = useState<string | null>(null);
 
   const { totalUniqueItems } = useCart();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-
     setToken(storedToken);
-  });
+  }, []);
 
   return (
-    <div className=" text-[#63564a]  flex  justify-between  items-center m-5  md:m-10  ">
-      <div className="max-md:text-[20px]  text-3xl font-bitcount_grid_double_ink ">
-        <Link href={"/"}>E-COMMERCE</Link>
+    <div className="text-[#63564a] flex justify-between items-center clamp-[mx,16px,40px] clamp-[my,16px,40px]">
+      <div className="font-bitcount_grid_double_ink clamp-[text,20px,30px]">
+        <Link href="/">E-COMMERCE</Link>
       </div>
 
-      <div className="flex justify-between items-center gap-5">
-        <div className=" md:flex hidden  gap-6   ">
+      <div className="flex items-center clamp-[gap,12px,20px]">
+        <div className="hidden md:flex clamp-[gap,16px,24px] clamp-[text,14px,16px]">
           <Link href="/">Home</Link>
           <Link href="/shop">Shop</Link>
-          <Link
-            href="/contact
-          "
-          >
-            Contact
-          </Link>
+          <Link href="/contact">Contact</Link>
+
           {token ? (
-            <Link href={""}>Log Out</Link>
+            <Link href="">Log Out</Link>
           ) : (
             <Link href="/login">Log In</Link>
           )}
@@ -44,32 +39,47 @@ const Header = () => {
 
         <div className="relative">
           <Link href="/cart">
-            <Cart className=" size-6  " />
+            <Cart className="clamp-[w,20px,24px] clamp-[h,20px,24px]" />
           </Link>
-          <div className="absolute bg-[#63564a] text-white h-4 w-4 text-xs text-center rounded-full px-0.5  -top-2 -right-2">
+
+          <div className="absolute -top-2 -right-2 bg-[#63564a] text-white rounded-full flex items-center justify-center clamp-[w,16px,20px] clamp-[h,16px,20px] clamp-[text,10px,12px]">
             {totalUniqueItems}
           </div>
         </div>
 
         <Hamburger
           onClick={() => setMenu(true)}
-          className="size-6 flex md:hidden cursor-pointer"
+          className="flex md:hidden cursor-pointer clamp-[w,20px,24px] clamp-[h,20px,24px]"
         />
-        {menu === true && (
-          <div className="bg-[#f1dff7] w-[250] right-0 z-50 h-screen fixed top-0">
-            <Close
-              className="size-6 text-[#63564a] absolute z-20 right-5 top-5 "
-              onClick={() => setMenu(false)}
-            />
-            <div className="flex flex-col absolute items-center justify-center inset-0 gap-5 ">
-              <Link href="/">HOME</Link>
-              <Link href="/shop">SHOP</Link>
 
-              <Link href="/contact">CONTACT</Link>
+        {menu && (
+          <div className="fixed top-0 right-0 z-50 h-screen bg-[#f1dff7] clamp-[w,220px,320px] shadow-lg">
+            <Close
+              onClick={() => setMenu(false)}
+              className="absolute top-5 right-5 text-[#63564a] cursor-pointer clamp-[w,20px,24px] clamp-[h,20px,24px]"
+            />
+
+            <div className="absolute inset-0 flex flex-col items-center justify-center clamp-[gap,16px,24px] clamp-[text,16px,20px]">
+              <Link href="/" onClick={() => setMenu(false)}>
+                HOME
+              </Link>
+
+              <Link href="/shop" onClick={() => setMenu(false)}>
+                SHOP
+              </Link>
+
+              <Link href="/contact" onClick={() => setMenu(false)}>
+                CONTACT
+              </Link>
+
               {token ? (
-                <Link href={""}>LOGOUT</Link>
+                <Link href="" onClick={() => setMenu(false)}>
+                  LOGOUT
+                </Link>
               ) : (
-                <Link href={"/login"}>LOGIN</Link>
+                <Link href="/login" onClick={() => setMenu(false)}>
+                  LOGIN
+                </Link>
               )}
             </div>
           </div>

@@ -17,8 +17,6 @@ const FeaturedProduct = () => {
     queryFn: frontendApi.getFeaturedProducts,
   });
 
-  // console.log(response);
-
   const featuredProducts = response?.data.data.featuredProducts;
 
   if (isLoading) return <p>Loading...</p>;
@@ -29,21 +27,20 @@ const FeaturedProduct = () => {
 
   return (
     <div>
-      <div className="flex flex-col gap-5 justify-center items-center py-10 text-[#63564a]">
-        <h1 className="font-semibold text-2xl sm:text-4xl md:text-5xl ">
-          NEW COLLECTION
-        </h1>
-        <h2 className="font-bold text-sm sm:text-2xl md:text-3xl ">SHOP NOW</h2>
+      <div className="flex flex-col justify-center items-center text-[#63564a] clamp-[gap,12px,20px] clamp-[py,40px,80px]">
+        <h1 className="font-semibold clamp-[text,24px,48px]">NEW COLLECTION</h1>
+
+        <h2 className="font-bold clamp-[text,14px,30px]">SHOP NOW</h2>
       </div>
 
-      <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  ">
-        {featuredProducts.map((items: any, index: number) => (
-          <Link key={index} href={`/shop/products/${items._id}`}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 clamp-[gap,8px,20px] clamp-[px,8px,16px]">
+        {featuredProducts.map((item: any) => (
+          <Link key={item._id} href={`/shop/products/${item._id}`}>
             <Card
-              image={storageUrl + items.image}
-              name={items.name}
-              category={items.categoryDetails.name}
-              price={items.price}
+              image={storageUrl + item.image}
+              name={item.name}
+              category={item.categoryDetails.name}
+              price={item.price}
             />
           </Link>
         ))}

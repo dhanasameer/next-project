@@ -18,8 +18,6 @@ const Category = () => {
     queryFn: frontendApi.getAllCategories,
   });
 
-  // console.log(response);
-
   const categories = response?.data.data.categories;
 
   if (isLoading) return <p>Loading...</p>;
@@ -30,27 +28,25 @@ const Category = () => {
 
   return (
     <div className="text-[#63564a]">
-      <div className="flex flex-col justify-center items-center gap-5 py-10  ">
-        <h1 className="font-semibold text-2xl sm:text-4xl md:text-5xl">
-          CATEGORIES
-        </h1>
+      <div className="flex flex-col justify-center items-center clamp-[gap,12px,20px] clamp-[py,40px,80px]">
+        <h1 className="font-semibold clamp-[text,24px,48px]">CATEGORIES</h1>
 
-        <h2 className="font-bold text-sm sm:text-2xl md:text-3xl">
+        <h2 className="font-bold clamp-[text,14px,30px]">
           THESE ARE OUR CATEGORIES
         </h2>
       </div>
 
-      <div className="grid grid-cols-3 grid-rows-2 col-span-1 gap-2 px-2 py-2 h-[50vh] md:h-[80vh] ">
-        <div className="relative row-span-2 ">
+      <div className="grid grid-cols-3 grid-rows-2 gap-2 clamp-[px,8px,16px] clamp-[py,8px,16px] h-[50vh] md:h-[80vh]">
+        <div className="relative row-span-2">
           <Link href={`/shop/${categories[0]._id}`}>
             <Image
               src={storageUrl + categories[0].image}
               fill
-              alt="image1"
-              className="object-cover  h-full w-full"
+              alt="Bedding"
+              className="object-cover"
             />
 
-            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+            <div className="absolute bg-white font-bold clamp-[bottom,4px,20px] clamp-[left,4px,20px] clamp-[p,4px,12px] clamp-[text,12px,32px]">
               BEDDING
             </div>
           </Link>
@@ -61,40 +57,41 @@ const Category = () => {
             <Image
               src={storageUrl + categories[1].image}
               fill
-              alt="image1"
-              className="object-cover  h-full w-full"
+              alt="Table Linen"
+              className="object-cover"
             />
 
-            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+            <div className="absolute bg-white font-bold clamp-[bottom,4px,20px] clamp-[left,4px,20px] clamp-[p,4px,12px] clamp-[text,12px,32px]">
               TABLE LINEN
             </div>
           </Link>
         </div>
 
-        <div className="relative row-span-1">
+        <div className="relative">
           <Link href={`/shop/${categories[2]._id}`}>
             <Image
               src={storageUrl + categories[2].image}
               fill
-              alt="image1"
-              className="object-cover h-full w-full  "
+              alt="Curtain"
+              className="object-cover"
             />
 
-            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+            <div className="absolute bg-white font-bold clamp-[bottom,4px,20px] clamp-[left,4px,20px] clamp-[p,4px,12px] clamp-[text,12px,32px]">
               CURTAIN
             </div>
           </Link>
         </div>
 
-        <div className="relative row-span-1">
+        <div className="relative">
           <Link href={`/shop/${categories[3]._id}`}>
             <Image
               src={storageUrl + categories[3].image}
               fill
-              alt="image1"
-              className="object-cover h-full w-full "
+              alt="Home Decor"
+              className="object-cover"
             />
-            <div className="absolute max-md:bottom-1 max-md:left-1 bottom-5 left-5 bg-white max-md:p-0.5 p-2 font-bold text-sm sm:text-xl md:text-2xl">
+
+            <div className="absolute bg-white font-bold clamp-[bottom,4px,20px] clamp-[left,4px,20px] clamp-[p,4px,12px] clamp-[text,12px,32px]">
               HOME DECOR
             </div>
           </Link>
